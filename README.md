@@ -1,25 +1,34 @@
-# DevOps Exercises
+# Kubernetes Exercises & Reference
 
-This repository contains a collection of exercises for learning DevOps concepts, tools, and best practices.
+This section contains questions, commands, and exercises related to Kubernetes.
 
-## Topics
+## Core Concepts
 
-- Linux
-- Networking
-- Containers
-- Kubernetes
-- CI/CD
-- Observability
-- Cloud
+- **Pod**: Smallest deployable unit in Kubernetes.
+- **Service**: Abstraction defining a logical set of Pods and a policy to access them.
+- **Deployment**: Declarative updates for Pods and ReplicaSets.
+- **Ingress**: Manages external access to services in a cluster.
 
-## How to Use
+## Quick Command Reference
 
-Each topic has a set of exercises with questions and answers. Try to solve them on your own before checking the solutions.
+```bash
+# Get cluster nodes
+kubectl get nodes
 
-## Contributing
+# Check pod status and details
+kubectl get pods -o wide
+kubectl describe pod <pod-name>
 
-Feel free to open a pull request with new exercises or improvements.
+# View logs (with tail/follow)
+kubectl logs -f <pod-name> -c <container-name>
 
-## License
+# Check resource usage (requires metrics-server to be running)
+kubectl top nodes
+kubectl top pods --all-namespaces
+```
 
-MIT
+## Useful Troubleshooting Steps
+
+1. Check pod events: `kubectl describe pod <pod-name>`
+2. Fetch logs from previous failed instance: `kubectl logs <pod-name> --previous`
+3. Execute interactive shell inside pod: `kubectl exec -it <pod-name> -- /bin/sh`
